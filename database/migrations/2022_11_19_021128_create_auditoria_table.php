@@ -17,8 +17,9 @@ return new class extends Migration
             $table->bigIncrements('id')->nullable(false);
             $table->integer('id_usuario')->nullable(false);
             $table->ipAddress('ip')->nullable(false);
-            $table->timestamp('fecha_hora', $precision = 0);
+            $table->timestamp('fecha_hora', $precision = 0)->useCurrent();
             $table->string('descripcion', 255)->nullable(false);
+            //$table->foreign('id_usuario')->references('id')->on('usuarios');
         });
     }
 

@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vida', function (Blueprint $table) {
-            $table->integer('ref_pago')->nullable(false);
-            $table->integer('id_user')->unique()->nullable(false);
-            $table->integer('id_beneficiario')->unique()->nullable(false);
+            $table->integer('ref_pago')->primary()->nullable(false);
+            $table->integer('id_user')->nullable(false);
+            $table->integer('id_beneficiario')->nullable(false);
             $table->timestamp('fecha_nacimineto')->nullable(false);
             $table->string('sexo', 20)->nullable(false);
             $table->string('estado_civil', 20)->nullable(false);
@@ -32,8 +32,10 @@ return new class extends Migration
             $table->date('fecha_fin')->nullable(false);
             $table->string('tipo', 50)->nullable(false);
             $table->string('plan', 20)->nullable(false);
-            $table->timestamp('created_at')->nullable(false);
-            $table->timestamp('update_at')->nullable(false);
+            $table->timestamp('created_at')->nullable(false)->useCurrent();
+            $table->timestamp('update_at')->nullable(false)->useCurrent()->useCurrentOnUpdate();
+            $table->foreign('id_user')->references('id')->on('usuarios');
+            //$table->foreign('id_beneficiario')->references('id')->on('clientes');
         });
     }
 

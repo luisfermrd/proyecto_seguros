@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->increments('id_solicitud')->nullable(false);
-            $table->timestamp('fecha_solicitud', $precision = 0);
+            $table->timestamp('fecha_solicitud', $precision = 0)->useCurrent();
             $table->tinyInteger('estado')->nullable(false);
             $table->integer('ref_pago')->unique()->nullable(false);
-            $table->timestamp('update_at', $precision = 0);
+            $table->timestamp('update_at', $precision = 0)->useCurrent()->useCurrentOnUpdate();
         });
     }
 
