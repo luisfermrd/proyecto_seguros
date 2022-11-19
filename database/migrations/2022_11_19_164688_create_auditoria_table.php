@@ -19,7 +19,7 @@ return new class extends Migration
             $table->ipAddress('ip')->nullable(false);
             $table->timestamp('fecha_hora', $precision = 0)->useCurrent();
             $table->string('descripcion', 255)->nullable(false);
-            //$table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
         });
     }
 
