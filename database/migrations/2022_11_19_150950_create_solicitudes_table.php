@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('solicitudes', function (Blueprint $table) {
-            $table->increments('id_solicitud')->nullable(false);
+            $table->bigIncrements('id_solicitud')->nullable(false);
             $table->timestamp('fecha_solicitud', $precision = 0)->useCurrent();
             $table->tinyInteger('estado')->nullable(false);
-            $table->integer('ref_pago')->unique()->nullable(false);
+            $table->integer('ref_pago');
             $table->timestamp('update_at', $precision = 0)->useCurrent()->useCurrentOnUpdate();
+            $table->foreign('ref_pago')->references('ref_pago')->on('pagos');
         });
     }
 

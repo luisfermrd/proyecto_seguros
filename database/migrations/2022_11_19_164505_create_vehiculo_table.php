@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vehiculo', function (Blueprint $table) {
-            $table->integer('ref_pago')->autoIncrement()->nullable(false);
+            $table->integer('ref_pago')->primary()->nullable(false);
             $table->integer('id_user')->nullable(false);
             $table->integer('id_beneficiario')->nullable(false);
             $table->string('uso', 50)->nullable(false);
@@ -31,7 +31,8 @@ return new class extends Migration
             $table->timestamp('created_at',0)->useCurrent();
             $table->timestamp('update_at',0)->useCurrent()->useCurrentOnUpdate();
             $table->foreign('id_user')->references('id')->on('usuarios');
-            //$table->foreign('id_beneficiario')->references('id')->on('clientes');
+            $table->foreign('id_beneficiario')->references('id')->on('clientes');
+            $table->foreign('ref_pago')->references('ref_pago')->on('pagos');
         });
     }
 

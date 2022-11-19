@@ -35,7 +35,8 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable(false)->useCurrent();
             $table->timestamp('update_at')->nullable(false)->useCurrent()->useCurrentOnUpdate();
             $table->foreign('id_user')->references('id')->on('usuarios');
-            //$table->foreign('id_beneficiario')->references('id')->on('clientes');
+            $table->foreign('id_beneficiario')->references('id')->on('clientes');
+            $table->foreign('ref_pago')->references('ref_pago')->on('pagos');
         });
     }
 
